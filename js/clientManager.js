@@ -1,13 +1,15 @@
 // UI
 const clientForm = document.querySelector('.client-form');
 const clientList = document.querySelector('.client-list');
-const clear = document.querySelector('.delete-client');
 
 allEventListeners();
 
 // Get inputs from form
 function allEventListeners() {
+    // Add Client
     clientForm.addEventListener('submit', addClient);
+
+    // Remove Client
     clientList.addEventListener('click', removeClientCard);
 }
 
@@ -72,7 +74,6 @@ function removeClientCard(e){
     if(e.target.parentElement.classList.contains('delete-client')) {
         e.target.parentElement.parentElement.remove();
     }
-    console.log(e.target);
 } 
 
 function buildClientList() {

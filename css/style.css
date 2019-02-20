@@ -1,5 +1,11 @@
 body {background:#f1f1f1;}
 
+#active {
+    background: #016fff;
+    color: #ffffff;
+    width: 550px;
+}
+
 .btn {
     background: #016fff;
     border: none;
