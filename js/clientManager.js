@@ -1,20 +1,39 @@
-// Get input from form on submit
-document.querySelector('.client-form').addEventListener('submit', addNewClient);
+// UI
+const clientForm = document.querySelector('.client-form');
+const clientList = document.querySelector('.client-list');
+const clear = document.querySelector('.delete-client');
+
+allEventListeners();
+
+// Get inputs from form
+function allEventListeners() {
+    clientForm.addEventListener('submit', addClient);
+    clientList.addEventListener('click', removeClientCard);
+}
+
 
 function makeClientCard(clientName) {
     // Define parts of the client listing
-    const clientCard = document.querySelector('.client-list');
     const li = document.createElement('li');
+    const del = document.createElement('a');
     
+    // Create clear marker
+    del.href = '#'
+    del.className = 'delete-client';
+    del.innerHTML = '<i class = "fas fa-times"></i>'
+    
+
     // Create client card attributes for new submissions
     li.className = 'client card'
     
     // Add li with text to the client-list
     li.appendChild(document.createTextNode(clientName));
-    clientCard.appendChild(li);
+    li.appendChild(del);
+    
+    clientList.appendChild(li);
 }
 
-function addNewClient (e){
+function addClient (e){
 
     // Read input value
     const newClient = document.querySelector('.new-client').value;
@@ -35,7 +54,7 @@ function addNewClient (e){
     localStorage.setItem('clients', JSON.stringify(clients));
 
     // Don't refresh
-    //e.preventDefault();
+    e.preventDefault();
 
     makeClientCard(newClient);
 
@@ -49,7 +68,14 @@ function addNewClient (e){
 
 }
 
-function clientList() {
+function removeClientCard(e){
+    if(e.target.parentElement.classList.contains('delete-client')) {
+        e.target.parentElement.parentElement.remove();
+    }
+    console.log(e.target);
+} 
+
+function buildClientList() {
     const allClients = JSON.parse(localStorage.getItem('clients'));
 
     allClients.forEach(function(client){
@@ -57,4 +83,6 @@ function clientList() {
     });
 }
 
-export { makeClientCard, addNewClient, clientList };
+buildClientList();
+
+export { allEventListeners, buildClientList };
