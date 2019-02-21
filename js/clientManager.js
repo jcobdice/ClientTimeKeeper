@@ -29,7 +29,7 @@ function makeClientCard(clientName) {
     li.className = 'client card'
     
     // Add li with text to the client-list
-    li.appendChild(document.createTextNode(clientName));
+    li.appendChild(document.createTextNode(clientName.name));
     li.appendChild(del);
     
     clientList.appendChild(li);
@@ -37,8 +37,12 @@ function makeClientCard(clientName) {
 
 function addClient (e){
 
-    // Read input value
-    const newClient = document.querySelector('.new-client').value;
+    // Create New Client object
+    const newClient = {}
+
+    // Set new client name to input value and new client time to 0
+    newClient.name = document.querySelector('.new-client').value;
+    newClient.time = 0;
 
     // Clients item will hold array of clients in local storage 
     let clients;
@@ -51,6 +55,7 @@ function addClient (e){
 
     // Send new client to array
     clients.push(newClient);
+    console.log(clients);
 
     // Send updated array to local storage
     localStorage.setItem('clients', JSON.stringify(clients));
@@ -61,12 +66,10 @@ function addClient (e){
     makeClientCard(newClient);
 
     // Clear the input
-    newClient.value = '';
+    newClient = '';
 
     // Don't refresh
     e.preventDefault();
-
-    clientList();
 
 }
 
