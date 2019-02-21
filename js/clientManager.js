@@ -2,6 +2,13 @@
 const clientForm = document.querySelector('.client-form');
 const clientList = document.querySelector('.client-list');
 
+class ClientDetail{
+    construction(name, timeSpent) {
+        this.name = name;
+        this.timeSpent = timeSpent;
+    }
+}
+
 allEventListeners();
 
 // Get inputs from form
@@ -38,7 +45,9 @@ function makeClientCard(clientName) {
 function addClient (e){
 
     // Read input value
-    const newClient = document.querySelector('.new-client').value;
+    const newClientName = document.querySelector('.new-client').value;
+
+    const newClient = new ClientDetail(newClientName, 0);
 
     // Clients item will hold array of clients in local storage 
     let clients;
