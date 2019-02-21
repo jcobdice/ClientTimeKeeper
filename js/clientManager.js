@@ -84,6 +84,19 @@ function addClient (e){
 function removeClientCard(e){
     if(e.target.parentElement.classList.contains('delete-client')) {
         e.target.parentElement.parentElement.remove();
+
+        let clients = JSON.parse(localStorage.getItem('clients'));
+        console.log(clients);
+
+        clients.forEach(function(client, index){
+            if(client.name === e.target.parentElement.parentElement.innerText){
+                clients.splice(index, 1);
+            } else {}
+        }); 
+
+        localStorage.setItem('clients', JSON.stringify(clients));
+        console.log(clients);
+
     }
 } 
 
