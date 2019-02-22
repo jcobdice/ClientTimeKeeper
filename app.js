@@ -1,2 +1,2 @@
 import * as clientManager from './js/clientManager.js';
-import { timer } from './js/timer.js';
+import { timer, setTimesOnCard } from './js/timer.js';

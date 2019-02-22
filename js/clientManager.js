@@ -1,3 +1,5 @@
+import { prettyTimeSpent, setTimesOnCard } from './timer.js';
+
 // UI
 const clientForm = document.querySelector('.client-form');
 const clientList = document.querySelector('.client-list');
@@ -108,12 +110,21 @@ function buildClientList() {
     if (allClients != null) {
         allClients.forEach(function(client){
             makeClientCard(client);
+
+            let prettyTime = prettyTimeSpent(client.totalTime);
+        
+            // get last span of type offered
+            let time = document.querySelectorAll('.time-span');
+            let lastTime = time[time.length-1];
+
+            lastTime.innerHTML = prettyTime;
+
         });
     } else {}
-
 
 }
 
 buildClientList();
 
 export { allEventListeners, buildClientList };
+
