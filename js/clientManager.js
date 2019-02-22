@@ -87,19 +87,30 @@ function addClient (e){
 
 function removeClientCard(e){
     if(e.target.parentElement.classList.contains('delete-client')) {
-        e.target.parentElement.parentElement.remove();
+
+        let target = e.target.parentElement.parentElement;
+        let targetCard = Array.from(target.childNodes);
+        let targetCardText = targetCard[0].textContent;
 
         let clients = JSON.parse(localStorage.getItem('clients'));
+
         console.log(clients);
 
         clients.forEach(function(client, index){
-            if(client.name === e.target.parentElement.parentElement.innerText){
-                clients.splice(index, 1);
-            } else {}
+            if(clients.length > 0){
+                if(client.name == targetCardText){
+                    clients.splice(index, 1);
+                } else {}
+            } else {
+                clients.pop();
+            }
+ 
         }); 
 
+        e.target.parentElement.parentElement.remove();
+
         localStorage.setItem('clients', JSON.stringify(clients));
-        console.log(clients);
+
 
     }
 } 
