@@ -16,16 +16,20 @@ function timer(e) {
 }
 
 function prettyTimeSpent(timeSpent) {
+
     let minutes = parseInt((timeSpent / (1000 * 60)) % 60)
     let hours = parseInt((timeSpent / (1000 * 60 * 60)) % 24)
   
-    hours = (hours < 1) ? "0" + hours : hours;
-    minutes = (minutes < 5) ? "0" + minutes : minutes;
-  
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+
+    let timeString = `${hours} hours and ${minutes} minutes`
+
+    return timeString;
+
   }
 
 let startTime;
-let endTime;
 
 function startTimer() {
     startTime = new Date();
@@ -43,8 +47,6 @@ function endTimer(selectedCard) {
 
             setTimes(currentCard)
 
-            prettyTimeSpent(timeSpent);
-
         } else {
             setTimes(currentCard);
             currentCard.id = '';
@@ -56,10 +58,23 @@ function endTimer(selectedCard) {
         let clients = JSON.parse(localStorage.getItem('clients'));
 
         clients.forEach(function(client){
+
+            let time;
+
+            let currentClientCard = Array.from(clientToRecord.childNodes);
+
+            let prettyTime = prettyTimeSpent(client.totalTime);
+            
+            currentClientCard.forEach(function(clientCardElement){
+                if(clientCardElement.className == 'time-span'){
+                    time = clientCardElement;
+                }
+            });
+
             if(client.name == clientToRecord.innerText){
                 client.recentTime = timeSpent;
                 client.totalTime = client.totalTime + client.recentTime
-                console.log(client); 
+                time.innerHTML = prettyTime;
             } else {}
         }); 
 

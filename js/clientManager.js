@@ -25,18 +25,20 @@ function makeClientCard(clientName) {
     // Define parts of the client listing
     const li = document.createElement('li');
     const del = document.createElement('a');
+    const timeSpan = document.createElement('span');
     
     // Create clear marker
     del.href = '#'
     del.className = 'delete-client';
     del.innerHTML = '<i class = "fas fa-times"></i>'
     
-
     // Create client card attributes for new submissions
     li.className = 'client card'
+    timeSpan.className = 'time-span' 
     
     // Add li with text to the client-list
     li.appendChild(document.createTextNode(clientName.name));
+    li.appendChild(timeSpan);
     li.appendChild(del);
     
     clientList.appendChild(li);
