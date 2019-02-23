@@ -5,6 +5,19 @@ clientList.addEventListener('click', timer);
 function timer(e) {
 // check the card to see if it is already active
     if (e.target.classList == 'client card' && e.target.id != 'active') {
+
+        // If the new card isn't active, see if any other cards are active
+        const activeCard = document.querySelector('#active');
+
+        // If another card is active, end the timeer on it
+        if(activeCard != null){
+            if (activeCard != e.target) {
+                endTimer(activeCard);
+            }
+
+        }
+
+
         // if it isn't start the timer
         startTimer();
 
@@ -13,18 +26,18 @@ function timer(e) {
         // set the id to active so we can find it later
         e.target.id = 'active';
     } else {
-        // stop whatever else was going at the time 
+        // stop whatever else was going at the time
         endTimer(e.target)
     }
-    
+
 }
 
 function prettyTimeSpent(timeSpent) {
-    
+
     let seconds = parseInt((timeSpent / (1000)) % 60);
     let minutes = parseInt((timeSpent / (1000 * 60)) % 60);
     let hours = parseInt((timeSpent / (1000 * 60 * 60)) % 24);
-  
+
     hours = (hours < 10) ? "0" + hours : hours;
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
@@ -68,7 +81,7 @@ function endTimer(selectedCard) {
             setTimesOnCard(currentCard);
             currentCard.id = '';
             console.log('Change Task');
-        } 
+        }
     } else {}
 
 }
@@ -77,14 +90,14 @@ function setTimesToLocalStorage(clientToRecord) {
     // get clients array from localStorage
     let clients = JSON.parse(localStorage.getItem('clients'));
 
-    let timeSpent = endTime - startTime; 
+    let timeSpent = endTime - startTime;
 
     // loop through and compare currently selected card to index[name] to update record
     clients.forEach(function(client){
 
         let currentClientCard = Array.from(clientToRecord.childNodes);
         let clientToRecordText = currentClientCard[0].textContent;
-        
+
         // if card name matches index[name] apply times to json
         if(client.name == clientToRecordText){
             client.recentTime = timeSpent;
@@ -93,7 +106,7 @@ function setTimesToLocalStorage(clientToRecord) {
 
 
 
-    }); 
+    });
 
     // send data back local storage
     clients = localStorage.setItem('clients', JSON.stringify(clients));
@@ -112,7 +125,7 @@ function setTimesOnCard(clientToRecord) {
         let clientToRecordText = currentClientCard[0].textContent;
 
         let prettyTime = prettyTimeSpent(client.totalTime);
-        
+
         // set time element on the card for use with prettyTime
         currentClientCard.forEach(function(clientCardElement){
             if(clientCardElement.className == 'time-span'){
@@ -127,7 +140,7 @@ function setTimesOnCard(clientToRecord) {
 
 
 
-    }); 
+    });
 
     // send data back local storage
     clients = localStorage.setItem('clients', JSON.stringify(clients));
