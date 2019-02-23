@@ -15,6 +15,22 @@ body {
 
 }
 
+header {
+    background: #ffffff;
+    color: #0198e1;
+    text-align:center;
+    padding-top: 50px;
+}
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+}
+
+h1 img {
+    vertical-align: middle;
+}
+
 #active {
     background: #ffffff;
     color: #005d8b;
