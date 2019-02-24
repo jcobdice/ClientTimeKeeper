@@ -87,20 +87,25 @@ function removeClientCard(e){
 
         let clients = JSON.parse(localStorage.getItem('clients'));
 
-        console.log(clients);
-
         clients.forEach(function(client, index){
             if(clients.length > 0){
                 if(client.name == targetCardText){
-                    clients.splice(index, 1);
+                    let confirmation = confirm(`You are about to delete ${client.name}. Are you sure?`);
+                    if(confirmation == true){
+                        clients.splice(index, 1);
+                        e.target.parentElement.parentElement.remove();
+                    } else {}
                 } else {}
             } else {
-                clients.pop();
+                if(confirmation == true){
+                    clients.pop();
+                    e.target.parentElement.parentElement.remove();
+                } else {}
             }
  
         }); 
 
-        e.target.parentElement.parentElement.remove();
+        
 
         localStorage.setItem('clients', JSON.stringify(clients));
 
