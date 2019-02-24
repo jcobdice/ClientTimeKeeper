@@ -4,13 +4,6 @@ import { prettyTimeSpent, setTimesOnCard } from './timer.js';
 const clientForm = document.querySelector('.client-form');
 const clientList = document.querySelector('.client-list');
 
-class ClientDetail{
-    construction(name, timeSpent) {
-        this.name = name;
-        this.timeSpent = timeSpent;
-    }
-}
-
 allEventListeners();
 
 // Get inputs from form
