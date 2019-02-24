@@ -4,7 +4,7 @@ clientList.addEventListener('click', timer);
 
 function timer(e) {
 // check the card to see if it is already active
-    if (e.target.classList == 'client card' && e.target.id != 'active') {
+    if (e.target.classList.contains('client') && e.target.id != 'active') {
 
         // If the new card isn't active, see if any other cards are active
         const activeCard = document.querySelector('#active');
@@ -24,7 +24,12 @@ function timer(e) {
         // send the information to the end timer so it can keep count
         endTimer(e.target);
         // set the id to active so we can find it later
-        e.target.id = 'active';
+        if(e.target.className == 'client card'){
+            e.target.id = 'active';
+        } else {
+            e.target.parentNode.id = 'active';
+        }
+        
     } else {
         // stop whatever else was going at the time
         endTimer(e.target)

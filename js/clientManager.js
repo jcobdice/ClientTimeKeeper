@@ -29,7 +29,7 @@ function makeClientCard(clientName) {
     
     // Create client card attributes for new submissions
     li.className = 'client card'
-    timeSpan.className = 'time-span' 
+    timeSpan.className = 'client time-span' 
     
     // Add li with text to the client-list
     li.appendChild(document.createTextNode(clientName.name));
