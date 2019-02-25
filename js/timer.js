@@ -133,7 +133,8 @@ function setTimesOnCard(clientToRecord) {
 
         // set time element on the card for use with prettyTime
         currentClientCard.forEach(function(clientCardElement){
-            if(clientCardElement.className == 'time-span'){
+            console.log(clientCardElement);
+            if(clientCardElement.className == 'client time-span'){
                 time = clientCardElement;
             }
         });
