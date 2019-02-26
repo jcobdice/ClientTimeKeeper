@@ -33,7 +33,7 @@ h1 img {
 #active {
     background: #ffffff;
     color: #005d8b;
-    width: 550px;
+    width: 85%;
     font-size: 25px;
 }
 
@@ -43,7 +43,7 @@ h1 img {
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
     margin: 10px auto;
     padding: 10px;
-    width: 500px;
+    width: 75%;
     cursor: pointer;
 }
 
@@ -62,7 +62,7 @@ input[type="text"]{
     height: 40px;
     display:block;
     margin:10px auto;
-    width: 500px;
+    width: 80%;
 }
 
 .client-list {
@@ -103,5 +103,26 @@ input[type="text"]{
     border-radius: 5px;
     color: #ffffff;
     padding: 5px;
-    width: 200px;
+    width: 50%;
+}
+
+
+@media(min-width: 600px){
+
+    #active {
+        width: 550px;
+    }
+
+    .card {
+        width: 500px;
+    }
+
+    .client-control {
+        width: 500px;
+    }
+
+    .btn {
+        width: 200px;
+    }
+
 }
