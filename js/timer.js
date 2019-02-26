@@ -9,26 +9,23 @@ function timer(e) {
         // If the new card isn't active, see if any other cards are active
         const activeCard = document.querySelector('#active');
 
-        // If another card is active, end the timeer on it
+        // If another card is active, end the timer on it
         if(activeCard != null){
-            if (activeCard != e.target) {
+            if (activeCard != e.target && activeCard != e.target.parentNode) {
                 endTimer(activeCard);
-            }
+            } else if (activeCard == e.target || activeCard == e.target.parentNode) {
+                // send the information to the end timer so it can keep count
+                endTimer(activeCard);
+                } 
+            } else {
+                // there is no active card so start the timer
+                startTimer(e.target);
+        } 
 
-        }
 
 
-        // if it isn't start the timer
-        startTimer();
 
-        // send the information to the end timer so it can keep count
-        endTimer(e.target);
-        // set the id to active so we can find it later
-        if(e.target.className == 'client card'){
-            e.target.id = 'active';
-        } else {
-            e.target.parentNode.id = 'active';
-        }
+
         
     } else {
         // stop whatever else was going at the time
@@ -57,8 +54,14 @@ let startTime;
 let endTime;
 
 // set a start time
-function startTimer() {
+function startTimer(selectedCard) {
     startTime = new Date();
+    // set the id to active so we can find it later
+    if(selectedCard.className == 'client card'){
+        selectedCard.id = 'active';
+    } else {
+        selectedCard.parentNode.id = 'active';
+    }
 }
 
 
@@ -68,8 +71,9 @@ function endTimer(selectedCard) {
 
     if (currentCard != null) {
         // make sure that we are clicking of the same card we turned on
-        if (selectedCard.id == currentCard.id) {
-            selectedCard.id = '';
+        if (selectedCard.id == currentCard.id || selectedCard.id == currentCard.parentNode.id) {
+
+            currentCard.id = '';
 
             // send current card information to setTimes to calculate time past
             setTimesToLocalStorage(currentCard);
@@ -85,6 +89,7 @@ function endTimer(selectedCard) {
             // print time to card
             setTimesOnCard(currentCard);
             currentCard.id = '';
+            currentCard.parentNode.id = ''
             console.log('Change Task');
         }
     } else {}
