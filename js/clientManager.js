@@ -63,13 +63,17 @@ function addClient (e){
     clients.push(newClient);
     console.log(clients);
 
+    clients.sort(sortClientList);
+
     // Send updated array to local storage
     localStorage.setItem('clients', JSON.stringify(clients));
 
     // Don't refresh
     e.preventDefault();
 
-    makeClientCard(newClient);
+    destroyClientCards();
+
+    buildClientList();
 
     // Clear the input
     console.log(clientInput);
@@ -105,13 +109,20 @@ function removeClientCard(e){
  
         }); 
 
-        
+        clients.sort(sortClientList);
 
         localStorage.setItem('clients', JSON.stringify(clients));
 
 
     }
 } 
+
+function destroyClientCards(){
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(function (card){
+        card.remove();
+    });
+}
 
 function buildClientList() {
     const allClients = JSON.parse(localStorage.getItem('clients'));
@@ -128,9 +139,19 @@ function buildClientList() {
 
             lastTime.innerHTML = prettyTime;
 
+            allClients.sort(sortClientList);
+
         });
     } else {}
 
+}
+
+function sortClientList(a,b){
+    if (a.name < b.name)
+        return -1;
+    if (a.name > b.name)
+        return 1;
+    return 0;
 }
 
 buildClientList();
