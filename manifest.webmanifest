@@ -1,0 +1,22 @@
+{
+  "name": "Keep Time",
+  "short_name": "keeptime",
+  "description": "Keep Client Time",
+  "background_color": "#FFF",
+  "icons": [
+    {
+      "src": "images/clock512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "images/clock192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "any"
+}
