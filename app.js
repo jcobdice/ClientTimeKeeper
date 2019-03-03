@@ -1,8 +1,6 @@
 import * as clientManager from './js/clientManager.js';
 import { timer, setTimesOnCard } from './js/timer.js';
 
-let deferredPrompt;
-
 window.addEventListener('load', () => {
     registerServiceWorker();
 });
@@ -17,14 +15,17 @@ async function registerServiceWorker() {
     }
 }
 
+let deferredPrompt;
 let addApp = document.querySelector('#addApp');
+addApp.style.display = 'none';
+
 let btnAdd = document.querySelector('.add');
 let btnCancel = document.querySelector('.cancel');
 
 window.addEventListener('beforeinstallprompt', (e) => {
   // Prevent Chrome 67 and earlier from automatically showing the prompt
   e.preventDefault();
-  console.log(`before install worked`);
+  console.log(`up`);
   // Stash the event so it can be triggered later.
   deferredPrompt = e;
   // Update UI notify the user they can add to home screen
