@@ -91,7 +91,7 @@ function removeClientCard(e){
 
         let clients = JSON.parse(localStorage.getItem('clients'));
 
-        clients.forEach(function(client, index){
+        clients.forEach((client, index) => {
             if(clients.length > 0){
                 if(client.name == targetCardText){
                     let confirmation = confirm(`You are about to delete ${client.name}. Are you sure?`);
@@ -119,7 +119,7 @@ function removeClientCard(e){
 
 function destroyClientCards(){
     const cards = document.querySelectorAll('.card');
-    cards.forEach(function (card){
+    cards.forEach((card) => {
         card.remove();
     });
 }
@@ -128,7 +128,7 @@ function buildClientList() {
     const allClients = JSON.parse(localStorage.getItem('clients'));
 
     if (allClients != null) {
-        allClients.forEach(function(client){
+        allClients.forEach((client) => {
             makeClientCard(client);
 
             let prettyTime = prettyTimeSpent(client.totalTime);

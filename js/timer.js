@@ -103,7 +103,7 @@ function setTimesToLocalStorage(clientToRecord) {
     let timeSpent = endTime - startTime;
 
     // loop through and compare currently selected card to index[name] to update record
-    clients.forEach(function(client){
+    clients.forEach((client) => {
 
         let currentClientCard = Array.from(clientToRecord.childNodes);
         let clientToRecordText = currentClientCard[0].textContent;
@@ -137,12 +137,12 @@ function setTimesOnCard(clientToRecord) {
         let prettyTime = prettyTimeSpent(client.totalTime);
 
         // set time element on the card for use with prettyTime
-        currentClientCard.forEach(function(clientCardElement){
-            console.log(clientCardElement);
+        currentClientCard.forEach((clientCardElement) => {
             if(clientCardElement.className == 'client time-span'){
                 time = clientCardElement;
             }
         });
+
 
         // if card name matches index[name] apply times to json
         if(client.name == clientToRecordText){
@@ -159,3 +159,4 @@ function setTimesOnCard(clientToRecord) {
 }
 
 export { timer, prettyTimeSpent, setTimesOnCard };
+
